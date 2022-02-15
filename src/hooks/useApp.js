@@ -17,7 +17,9 @@ const useApp = () => {
         let currentOperation = '+';
 
         const getOperation = (nextOperation) => {
-            const currentResult = currentOperation === '+' ? getOctalAdditing(result, currentDigit) : getOctalSubtraction(result, currentDigit);
+            const currentResult = currentOperation === '+' 
+                ? getOctalAdditing(result, currentDigit)
+                : getOctalSubtraction(result, currentDigit);
             currentOperation = nextOperation;
             currentDigit = '';
             return currentResult;
@@ -100,7 +102,7 @@ const useApp = () => {
         expressionValue,
         handleReset,
         handleFinish,
-    }
+    };
 };
 
 export default useApp;
