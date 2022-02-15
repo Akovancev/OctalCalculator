@@ -5,16 +5,16 @@ const getOctalSubtraction = (firstValue, secondValue) => {
     let result = '';
     let a = Number(firstValue);
     let b = Number(secondValue);
+    if (a < 0) return -getOctalAdditing(-a, b);
+
     let sign = 1;
-    if (a < 0) {
-        return -getOctalAdditing(-a, b);
-    }
     if (a < b) {
         const temp = a;
         a = b;
         b = temp;
         sign = -1;
     }
+
     while (a || b || balance) {
         const currentResult = a % 10 - b % 10 - balance;
         if (currentResult < 0) {

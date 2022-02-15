@@ -5,8 +5,8 @@ const getOctalAdditing = (firstValue, secondValue) => {
     let result = '';
     let a = Number(firstValue);
     let b = Number(secondValue);
-    console.log(a, b);
     if (a < 0) return getOctalSubtraction(b, -a);
+
     while (a || b || balance) {
         const currentResult = a % 10 + b % 10 + balance;
         if (currentResult > 7) {
