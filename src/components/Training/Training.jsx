@@ -59,10 +59,9 @@ const Training = () => {
             </FormGroup>
             <Button
                 fullWidth
-                color="error"
                 onClick={handleFinish}
             >
-                Submit
+                Начать тренировку
             </Button>
             {firstValue && !errorMessage && (
                 <>
@@ -76,10 +75,9 @@ const Training = () => {
                     />
                     <Button
                         fullWidth
-                        color="error"
                         onClick={handleCheckResult}
                     >
-                        Check
+                        Проверить результат
                     </Button>
                 </>
             )}

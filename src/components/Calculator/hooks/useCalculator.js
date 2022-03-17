@@ -87,12 +87,12 @@ const useCalculator = () => {
                 onClickFn: () => handleChange('0'),
             },
             {
-                label: ' ',
-                onClickFn: () => { },
-            },
-            {
                 label: '=',
                 onClickFn: handleFinish,
+            },
+            {
+                label: 'C',
+                onClickFn: handleReset,
             },
         ]
     ];

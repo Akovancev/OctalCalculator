@@ -3,7 +3,7 @@ import { Button, ButtonGroup, TextField } from "@mui/material";
 import useCalculator from './hooks/useCalculator';
 
 const Calculator = () => {
-    const { expressionValue, calculatorButtonsConfig, handleReset } = useCalculator();
+    const { expressionValue, calculatorButtonsConfig } = useCalculator();
     return (
         <>
             <TextField
@@ -15,7 +15,6 @@ const Calculator = () => {
                 <ButtonGroup fullWidth>
                     {stringButtons.map(({ label, onClickFn }) => (
                         <Button
-                            color="error"
                             variant="contained"
                             onClick={onClickFn}
                         >
@@ -24,13 +23,6 @@ const Calculator = () => {
                     ))}
                 </ButtonGroup>
             ))}
-            <Button
-                fullWidth
-                color="error"
-                onClick={handleReset}
-            >
-                Reset
-            </Button>
         </>
     );
 };
