@@ -4,87 +4,81 @@ import getOctalSubtraction from '../../../utility/getOctalSubtraction';
 
 const useCalculator = () => {
     const [expressionValue, setExpressionValue] = useState('');
+    const [firstValue, setFirstValue] = useState();
+    const [operation, setOperation] = useState();
 
-    const handleChange = digit => {
-        setExpressionValue(prevState => prevState + digit)
+    const handleChangeValue = digit => {
+        if (isNaN(expressionValue)) setExpressionValue(digit)
+        else setExpressionValue(prevState => prevState + digit)
     };
+
+    const handleClickOperation = currOperation => {
+        if (firstValue) {
+            setExpressionValue(operation.includes('+') 
+                ? getOctalAdditing(firstValue, Number(expressionValue)) 
+                : getOctalSubtraction(firstValue, Number(expressionValue)));
+            setOperation();
+            setFirstValue();
+            if (!currOperation.includes('=')) {
+                setFirstValue(Number(expressionValue));
+                setOperation(currOperation);
+                setExpressionValue(currOperation)
+            }
+        }
+        else {
+            setFirstValue(Number(expressionValue));
+            setOperation(currOperation);
+            setExpressionValue(currOperation);
+        }
+    }
 
     const handleReset = () => setExpressionValue('');
-
-    const handleFinish = () => {
-        let result = 0;
-        let currentDigit = '';
-        let currentOperation = '+';
-
-        const getOperation = (nextOperation) => {
-            const currentResult = currentOperation === '+' 
-                ? getOctalAdditing(result, currentDigit)
-                : getOctalSubtraction(result, currentDigit);
-            currentOperation = nextOperation;
-            currentDigit = '';
-            return currentResult;
-        }
-
-        [...expressionValue].map(value => {
-            if (value === ' ') return value;
-
-            if (!isNaN(value)) {
-                currentDigit += value;
-                return value;
-            }
-
-            result = getOperation(value);
-            return value;
-        });
-        result = getOperation();
-        setExpressionValue(result);
-    };
 
     const calculatorButtonsConfig = [
         [
             {
                 label: '1',
-                onClickFn: () => handleChange('1'),
+                onClickFn: () => handleChangeValue('1'),
             },
             {
                 label: '2',
-                onClickFn: () => handleChange('2'),
+                onClickFn: () => handleChangeValue('2'),
             },
             {
                 label: '3',
-                onClickFn: () => handleChange('3'),
+                onClickFn: () => handleChangeValue('3'),
             },
             {
                 label: '-',
-                onClickFn: () => handleChange(' - '),
+                onClickFn: () => handleClickOperation(' - '),
             },
         ],
         [
             {
                 label: '4',
-                onClickFn: () => handleChange('4'),
+                onClickFn: () => handleChangeValue('4'),
             },
             {
                 label: '5',
-                onClickFn: () => handleChange('5'),
+                onClickFn: () => handleChangeValue('5'),
             },
             {
                 label: '6',
-                onClickFn: () => handleChange('6'),
+                onClickFn: () => handleChangeValue('6'),
             },
             {
                 label: '+',
-                onClickFn: () => handleChange(' + '),
+                onClickFn: () => handleClickOperation(' + '),
             },
         ],
         [
             {
                 label: '7',
-                onClickFn: () => handleChange('7'),
+                onClickFn: () => handleChangeValue('7'),
             },
             {
                 label: '0',
-                onClickFn: () => handleChange('0'),
+                onClickFn: () => handleChangeValue('0'),
             },
             {
                 label: ' ',
@@ -92,7 +86,7 @@ const useCalculator = () => {
             },
             {
                 label: '=',
-                onClickFn: handleFinish,
+                onClickFn: () => handleClickOperation('='),
             },
         ]
     ];
@@ -101,7 +95,6 @@ const useCalculator = () => {
         calculatorButtonsConfig,
         expressionValue,
         handleReset,
-        handleFinish,
     };
 };
 
