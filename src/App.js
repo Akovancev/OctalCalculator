@@ -1,37 +1,14 @@
-import { Box, Button, ButtonGroup, TextField } from "@mui/material";
-import React from "react";
-import useApp from "./hooks/useApp";
+import React from 'react';
+import { Box } from "@mui/material";
+import Calculator from "./components/Calculator/Calculator";
 import { boxStyles } from "./styles/styles";
+import Training from './components/Training/Training';
 
 function App() {
-  const { expressionValue, calculatorButtonsConfig, handleReset } = useApp();
   return (
     <Box sx={boxStyles}>
-      <TextField 
-        value={expressionValue} 
-        size="small" 
-        fullWidth
-      />
-      {calculatorButtonsConfig.map(stringButtons => (
-        <ButtonGroup fullWidth>
-          {stringButtons.map(({ label, onClickFn }) => (
-            <Button 
-              color="error" 
-              variant="contained"
-              onClick={onClickFn}
-            >
-              {label}
-            </Button>
-          ))}
-        </ButtonGroup>
-      ))}
-      <Button 
-        fullWidth 
-        color="error" 
-        onClick={handleReset}
-      >
-        Reset
-      </Button>
+      <Calculator />
+      <Training />
     </Box>
   );
 }

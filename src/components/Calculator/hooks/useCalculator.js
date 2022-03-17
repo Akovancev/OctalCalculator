@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import getOctalAdditing from '../utility/getOctalAdditing';
-import getOctalSubtraction from '../utility/getOctalSubtraction';
+import getOctalAdditing from '../../../utility/getOctalAdditing';
+import getOctalSubtraction from '../../../utility/getOctalSubtraction';
 
-const useApp = () => {
+const useCalculator = () => {
     const [expressionValue, setExpressionValue] = useState('');
 
     const handleChange = digit => {
@@ -105,4 +105,4 @@ const useApp = () => {
     };
 };
 
-export default useApp;
+export default useCalculator;
