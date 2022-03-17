@@ -14,15 +14,19 @@ const useCalculator = () => {
 
     const handleClickOperation = currOperation => {
         if (firstValue) {
-            setExpressionValue(operation.includes('+') 
-                ? getOctalAdditing(firstValue, Number(expressionValue)) 
-                : getOctalSubtraction(firstValue, Number(expressionValue)));
-            setOperation();
-            setFirstValue();
+            const value = operation.includes('+')
+                ? getOctalAdditing(firstValue, Number(expressionValue))
+                : getOctalSubtraction(firstValue, Number(expressionValue));
+            ;
             if (!currOperation.includes('=')) {
-                setFirstValue(Number(expressionValue));
+                setFirstValue(Number(value));
                 setOperation(currOperation);
                 setExpressionValue(currOperation)
+            }
+            else {
+                setOperation();
+                setFirstValue();
+                setExpressionValue(value);
             }
         }
         else {
@@ -32,7 +36,11 @@ const useCalculator = () => {
         }
     }
 
-    const handleReset = () => setExpressionValue('');
+    const handleReset = () => {
+        setExpressionValue('');
+        setFirstValue();
+        setOperation();
+    }
 
     const calculatorButtonsConfig = [
         [
