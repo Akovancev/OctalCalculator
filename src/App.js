@@ -1,13 +1,15 @@
 import React from 'react';
-import { Box } from "@mui/material";
+import { Routes, Route } from "react-router-dom";
 import Calculator from "./components/Calculator/Calculator";
-import { boxStyles } from "./styles/styles";
+import Training from './components/Training/Training';
+
 
 function App() {
   return (
-    <Box sx={boxStyles}>
-      <Calculator />
-    </Box>
+    <Routes>
+      <Route path='/training' element={<Training />} />
+      <Route path='/' element={<Calculator />} />
+    </Routes>
   );
 }
 

@@ -1,7 +1,7 @@
 export const boxStyles = {
     width: 180,
     display: 'flex',
-    margin: 'auto',
+    margin: '40px auto',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
